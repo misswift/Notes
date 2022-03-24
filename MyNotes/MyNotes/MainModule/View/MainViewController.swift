@@ -9,9 +9,10 @@ import UIKit
 import SnapKit
 import CoreData
 
-class ViewController: UIViewController {
+class MainViewController: UIViewController {
     
     private let tableView = UITableView()
+    var presenter: MainPresenterProtocol?
     
     var notes: [Note] = []
     
@@ -102,7 +103,7 @@ class ViewController: UIViewController {
     
 }
 
-extension  ViewController: UITableViewDelegate {
+extension  MainViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let delete = UIContextualAction(style: .destructive,
                                        title: "DeleteAll") { [weak self] (action, view, completionHandler) in
@@ -114,7 +115,7 @@ extension  ViewController: UITableViewDelegate {
     }
     
     
-    extension ViewController:  UITableViewDataSource {
+extension MainViewController:  UITableViewDataSource {
         func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
             return notes.count
         }
@@ -126,5 +127,11 @@ extension  ViewController: UITableViewDelegate {
             return cell
         }
         
+}
+
+extension MainViewController: MainViewProtocol {
+    func note(note: String) {
+        print("")
     }
+}
 

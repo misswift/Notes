@@ -7,17 +7,25 @@
 
 import Foundation
 
-protocol MainViewProtocol {
+protocol MainViewProtocol: AnyObject {
     func note (note: String)
 }
 
-protocol MainPresenterProtocol {
+protocol MainPresenterProtocol: AnyObject {
     func createNote (note: String)
     func deleteNote (note: String)
 
 }
 
 class MainPresenter: MainPresenterProtocol {
+    let view: MainViewProtocol!
+    let router: RouterProtocol!
+    
+    init (  view: MainViewProtocol, router: RouterProtocol){
+        self.view = view
+        self.router = router
+    }
+    
     func deleteNote(note: String) {
 //        <#code#>
     }
@@ -26,5 +34,5 @@ class MainPresenter: MainPresenterProtocol {
 //        <#code#>
     }
     
-    let view: MainViewProtocol! = nil
+   
 }
